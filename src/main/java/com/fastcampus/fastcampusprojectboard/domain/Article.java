@@ -47,6 +47,7 @@ public class Article {
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
     @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
 
+
     protected Article() {}
 
     private Article(String title, String content, String hashtag) {
