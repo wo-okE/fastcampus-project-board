@@ -18,7 +18,16 @@ public interface ArticleRepository extends
         QuerydslPredicateExecutor<Article>, // 기본적으로 Entity 안에 있는 모든 필드에 대한 검색 기능을 추가해줌
         QuerydslBinderCustomizer<QArticle>  {// query의 LIKE 와 같이 기능을 추가할 수 있음.
 
-    Page<Article> findByTitle(String title, Pageable pageable);
+    Page<Article> findByTitleContaining(String title, Pageable pageable);
+
+    Page<Article> findByContentContaining(String content, Pageable pageable);
+
+    Page<Article> findByUserAccount_UserIdContaining(String userId, Pageable pageable);
+
+    Page<Article> findByUserAccount_NicknameContaining(String nickname, Pageable pageable);
+
+    Page<Article> findByHashtag(String hashtag, Pageable pageable);
+
 
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {
