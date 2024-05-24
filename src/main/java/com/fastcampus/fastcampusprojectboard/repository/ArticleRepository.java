@@ -4,6 +4,8 @@ import com.fastcampus.fastcampusprojectboard.domain.Article;
 import com.fastcampus.fastcampusprojectboard.domain.QArticle;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -15,6 +17,8 @@ public interface ArticleRepository extends
         JpaRepository<Article, Long>,
         QuerydslPredicateExecutor<Article>, // 기본적으로 Entity 안에 있는 모든 필드에 대한 검색 기능을 추가해줌
         QuerydslBinderCustomizer<QArticle>  {// query의 LIKE 와 같이 기능을 추가할 수 있음.
+
+    Page<Article> findByTitle(String title, Pageable pageable);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {
